@@ -3,3 +3,9 @@
     <p> <%= question.question_text %> </p>
   <% end %>
 </div>
+
+<form action="/questions" method="post">
+  <label for="question_text">Question: </label>
+  <input type="text" name="question_text">
+  <input type="submit" value="Submit">
+</form>
