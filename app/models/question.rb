@@ -3,4 +3,5 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :comments, as: :commentable
   validates :question_text, presence: true
+  validates :user_id, presence: true
 end
