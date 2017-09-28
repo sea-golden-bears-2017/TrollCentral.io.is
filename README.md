@@ -1,13 +1,13 @@
 # TrollCentral.io.is
 
-##Team Name: Troll Team
-##Team Members:
+## Team Name: Troll Team
+## Team Members:
 * Christine Buell
 * Piper Denney
 * John Simoni
 * Anna Jeszeck
 
-##User Stories:
+## User Stories:
 * Without Authentication (Day 1)
   * Users can post questions
   * Users can view all the questions
