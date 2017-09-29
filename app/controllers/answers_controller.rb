@@ -1,9 +1,10 @@
-get '/' do
 
-  erb :answers
+get '/questions/1/answers' do
+
+ erb :'/answers/answers'
 end
 
-get '/answers' do
+post '/questions/question_id/answers' do
 
-erb :answers
+redirect '/questions/question_id/answers'
 end
