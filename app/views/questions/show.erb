@@ -1,27 +1,29 @@
-<h1>Question Show Page</h1>
-<div>
-  <p>
-    <%= @question.question_text %>
-  </p>
-</div>
-<div id="answer_list">
-  <% if @question.answers %>
-  <ul>
-    <% @question.answers.each do |answer| %>
-    <li>
-      <%= answer.answer_text %>
-    </li>
+<div class="container">
+  <h1>Question Show Page</h1>
+  <div>
+    <p>
+      <%= @question.question_text %>
+    </p>
+  </div>
+  <div id="answer_list">
+    <% if @question.answers %>
+    <ul>
+      <% @question.answers.each do |answer| %>
+      <li>
+        <%= answer.answer_text %>
+      </li>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
-  <% end %>
-</div>
-<div id="new_question">
-  <form action="/questions/<%= @question.id %>/answers" method="post">
-    <label for="question_text">Answer Text: </label>
-    <textarea name="answer[answer_text]"></textarea>
-    <input type="hidden" name="answer[question_id]" value="<%= @question.id %>"/>
-    <input type="hidden" name="answer[user_id]" value="0"/>
-    <input type="submit" value="Submit" />
-  </form>
+  </div>
+  <div id="new_question">
+    <form action="/questions/<%= @question.id %>/answers" method="post">
+      <label for="question_text">Answer Text: </label>
+      <textarea name="answer[answer_text]"></textarea>
+      <input type="hidden" name="answer[question_id]" value="<%= @question.id %>"/>
+      <input type="hidden" name="answer[user_id]" value="0"/>
+      <input type="submit" value="Submit" />
+    </form>
 
+  </div>
 </div>
