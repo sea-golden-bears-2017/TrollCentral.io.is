@@ -4,7 +4,7 @@ describe "answers_controller" do
   let (:question) {Question.create!(question_text: "where?", user_id: 0)}
 
   describe "questions show / answers index" do
-    before(:each) {get "/questions/#{question.id}/answers"}
+    before(:each) {get "/questions/#{question.id}"}
     it 'returns 200' do
       expect(last_response.status).to eq(200)
     end
