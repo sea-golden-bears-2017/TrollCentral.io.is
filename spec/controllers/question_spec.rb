@@ -29,7 +29,16 @@ describe "Questions Controller" do
     end
   end
 
-  describe "get /questions/:id"
+  describe "post /questions/:question_id/comments" do
+    let(:question){Question.create!(question_text: "where?", user_id: 0)}
 
-  describe "post /questions/:question_id/comments"
+    it "reroutes to the question's show page" do
+      post "/questions/#{question.id}/comments", {commentable_id: 1, commentable_type: 'Question', comment_text: "Nothing.", user_id: 0}
+      expect(last_response.location).to end_with("/questions/#{question.id}")
+    end
+
+    it "creates a new comment on form submit" do
+      expect{post "/questions/#{question.id}/comments", {commentable_id: 4, commentable_type: 'Question', comment_text: "Nothing.", user_id: 0}}.to change{Comment.count}.by(1)
+    end
+  end
 end
