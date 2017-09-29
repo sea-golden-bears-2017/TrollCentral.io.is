@@ -1,7 +1,10 @@
 <div>
   <% @questions.each do |question| %>
   <div>
-    <a href="/questions/<%=question.id%>/answers"><%= question.question_text %></a>
+    <a href="/questions/<%=question.id%>"><%= question.question_text %></a>
+    <div>
+      <label>Answers: <%= question.answers.count %></label>
+    </div>
   </div>
   <% end %>
 </div>

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "answers_controller" do
   let (:question) {Question.create!(question_text: "where?", user_id: 0)}
+
   describe "questions show / answers index" do
     before(:each) {get "/questions/#{question.id}/answers"}
     it 'returns 200' do
@@ -19,7 +20,7 @@ describe "answers_controller" do
       expect(last_response.status).to eq(302)
     end
     it 'redirects to questions show page' do
-      expect(last_response.location).to end_with("/answers")
+      expect(last_response.location).to end_with("/#{question.id}")
     end
     it 'creates a new answer' do
       expect(Answer.find_by_answer_text("here")).to_not be_nil
