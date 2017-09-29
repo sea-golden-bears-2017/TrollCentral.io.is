@@ -17,13 +17,14 @@ describe "answers_controller" do
     before(:each) {post "/questions/#{question.id}/answers", {answer: {answer_text:
       "here", question_id: question.id, user_id: 0}}}
     it 'returns 302' do
+
       expect(last_response.status).to eq(302)
     end
     it 'redirects to questions show page' do
       expect(last_response.location).to end_with("/answers")
     end
     it 'creates a new answer' do
-      expect(Answers.find_by_answer_text("here")).to_not be_nil
+      expect(Answer.find_by_answer_text("here")).to_not be_nil
     end
 
   end
