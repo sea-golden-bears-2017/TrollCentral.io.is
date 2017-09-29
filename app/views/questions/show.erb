@@ -1,1 +1,13 @@
 <h1>Question Show Page</h1>
+<div> <!-- Question DIV -->
+  <div> <!-- Question Text -->
+    <%=  @question.question_text %>
+  </div>
+  <div> <!-- Comment Section -->
+    <ul>
+      <% @question.comments.each do |comment| %>
+        <li><%= comment.comment_text %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

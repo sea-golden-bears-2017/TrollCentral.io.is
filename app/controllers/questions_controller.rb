@@ -1,9 +1,20 @@
 get '/questions' do
   @questions = Question.all
-  erb :index
+  erb :'questions/index'
 end
 
 post '/questions' do
   Question.create(question_text: params[:question_text], user_id: 0)
   redirect '/questions'
+end
+
+get '/questions/:id' do
+  @question = Question.find(params[:id])
+  erb :'/questions/show'
+end
+
+post '/questions/:question_id/comments' do
+  question = Question.find(params[:question_id])
+  Comment.create(commentable_id: params[:question_id], commentable_type: 'Question', comment_text: params[:question_comment], user_id: question.user_id)
+  redirect '/questions/:id'
 end
