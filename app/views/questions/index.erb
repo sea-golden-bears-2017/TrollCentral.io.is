@@ -5,6 +5,7 @@
     <div>
       <label>Answers: <%= question.answers.count %></label>
     </div>
+    <a href="/questions/<%=question.id%>/answers"><%= question.question_text %></a>
   </div>
   <% end %>
 </div>
