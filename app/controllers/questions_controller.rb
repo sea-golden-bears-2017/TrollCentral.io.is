@@ -16,5 +16,5 @@ end
 post '/questions/:question_id/comments' do
   question = Question.find(params[:question_id])
   Comment.create(commentable_id: params[:question_id], commentable_type: 'Question', comment_text: params[:question_comment], user_id: question.user_id)
-  redirect '/questions/:id'
+  redirect "/questions/#{params[:question_id]}"
 end

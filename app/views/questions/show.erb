@@ -9,6 +9,11 @@
         <li><%= comment.comment_text %></li>
       <% end %>
     </ul>
+    <form action="/questions/<%= @question.id %>/comments" method="post">
+      <label>Add Comment:</label>
+      <input type="text" name="question_comment">
+      <input type="submit" value="Submit">
+    </form>
   </div>
 <div id="answer_list">
   <% if @question.answers %>
