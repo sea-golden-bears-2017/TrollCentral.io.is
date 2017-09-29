@@ -1,6 +1,6 @@
 get '/questions' do
   @questions = Question.all
-  erb :index
+  erb :'/questions/index'
 end
 
 post '/questions' do
