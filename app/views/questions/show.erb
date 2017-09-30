@@ -25,8 +25,16 @@
     <% end %>
   </ul>
   <% end %>
+
+  <form action="/questions/<%= @question.id %>/answers/<%= @answer.id %>/comments" method="post">
+    <label>Add Comment:</label>
+    <input type="text" name="comment_text">
+    <input type="submit" value="Submit">
+  </form>
+
 </div>
-<div id="new_question">
+
+<div id="new_question"> <!-- NEW ANSWER -->
   <form action="/questions/<%= @question.id %>/answers" method="post">
     <label for="question_text">Answer Text: </label>
     <textarea name="answer[answer_text]"></textarea>

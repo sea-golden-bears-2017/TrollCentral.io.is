@@ -9,7 +9,9 @@ post '/questions' do
 end
 
 get '/questions/:id' do
+  p params
   @question = Question.find(params[:id])
+  @answer = Answer.find_by(question_id: params[:id])
   erb :'/questions/show'
 end
 
