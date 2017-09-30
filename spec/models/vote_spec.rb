@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Vote do
   let (:user) {User.create(user_name: "Woody Guthrie")}
   let (:question) {Question.create(question_text: "Where?", user_id: user.id)}
-  let (:vote) {Vote.create(user_id: user.id, value: 1, voteable: question)}
+  let (:vote) {Vote.create(user: user, value: 1, voteable: question)}
   describe "validations" do
     it "has a value of +1, -1, or 0" do
       vote.value = 2

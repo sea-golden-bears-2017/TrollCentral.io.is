@@ -5,7 +5,7 @@ describe "Vote Controller" do
   let (:question) {Question.create(question_text: "Where?", user_id: user.id)}
   describe "post ../votes" do
     context "upvote on a question" do
-      let(:upvote) {post "/questions/#{question.id}/votes", {vote_val: 1}}
+      let(:upvote) {post "/questions/#{question.id}/votes", {vote_val: 1, type: "question"}}
       it "returns 302" do
         upvote
         expect(last_response.status).to eq(302)
@@ -19,7 +19,7 @@ describe "Vote Controller" do
       end
     end
     context "downvote on a question" do
-      let(:downvote) {post "/questions/#{question.id}/votes", {vote_val: -1}}
+      let(:downvote) {post "/questions/#{question.id}/votes", {vote_val: -1, type: "question"}}
       it "returns 302" do
         downvote
         expect(last_response.status).to eq(302)
