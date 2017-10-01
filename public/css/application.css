@@ -1,9 +1,12 @@
 .answered_question {
+
   margin: 0 auto;
 
 
 }
-
+.container {
+  margin: auto 0;
+}
 
 /*textarea {
   width: 660px;

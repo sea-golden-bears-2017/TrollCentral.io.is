@@ -3,6 +3,14 @@
   <div> <!-- Question Text -->
     <h2>QUESTION: <%=  @question.question_text %></h2>
   </div>
+  <div class="question-vote">
+    <%# FIXME: Fix hard-coded user id when we add sessions! %>
+    <%= erb :'partials/_vote',
+    locals: {user_id: 1, type: "question", voteable_id: @question.id} %>
+    <p>
+      Vote total: <%= @question.votes.pluck(:value).reduce(:+).to_i %>
+    </p>
+  </div>
   <div> <!-- Comment Section -->
     <ul>
       <% @question.comments.each do |comment| %>
@@ -26,7 +34,7 @@
     <ul>
       <% answer.comments.each do |comment| %>
       <li><%= comment.comment_text %></li>
-      <% end %> 
+      <% end %>
     </ul>
     <div>
       <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments" method="post">
@@ -34,6 +42,13 @@
         <input type="text" name="comment_text">
         <input type="submit" value="Submit">
       </form>
+    <div class="answer_vote">
+      <%# FIXME: Fix hard-coded user id when we add sessions! %>
+      <%= erb :'partials/_vote',
+      locals: {user_id: 1, type: "answer", voteable_id: answer.id} %>
+      <p>
+        Vote total: <%= answer.votes.pluck(:value).reduce(:+).to_i %>
+      </p>
     </div>
     <% end %>
   </div>
