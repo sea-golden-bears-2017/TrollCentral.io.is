@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Vote Controller" do
-  let (:user) {User.create(user_name: "Woody Guthrie")}
+  let (:user) {User.create(user_name: "Woody Guthrie", email: "hi@hi.com", password_hash: 'password')}
   let (:question) {Question.create(question_text: "Where?", user_id: user.id)}
   describe "post ../votes" do
     context "upvote on a question" do
