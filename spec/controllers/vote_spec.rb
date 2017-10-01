@@ -45,7 +45,7 @@ describe "Vote Controller" do
       end
     end
     context "user is not logged in" do
-      it "returns 404"
+      xit "returns 404"
     end
   end
 end

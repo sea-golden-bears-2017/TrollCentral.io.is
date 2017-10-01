@@ -6,7 +6,7 @@
   <div class="question-vote">
     <%# FIXME: Fix hard-coded user id when we add sessions! %>
     <%= erb :'partials/_vote',
-    locals: {user_id: 0, type: "question", voteable_id: @question.id} %>
+    locals: {user_id: 1, type: "question", voteable_id: @question.id} %>
     <p>
       Vote total: <%= @question.votes.pluck(:value).reduce(:+).to_i %>
     </p>
