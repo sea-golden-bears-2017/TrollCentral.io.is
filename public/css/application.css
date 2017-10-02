@@ -90,6 +90,16 @@ a {
   margin-left: 1rem;
 }
 
+.comment-button {
+  background-color: #4CAF50;
+  padding: 1rem;
+  margin-left: 1rem;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.9rem;
+}
+
 .show-page {
   padding: 2rem;
   display: flex;
@@ -150,6 +160,11 @@ a {
 }
 
 .comment-form {
+  margin-left: 4rem;
+  margin-bottom: 1rem;
+}
+
+.question-comment {
   margin-left: 4rem;
   margin-bottom: 1rem;
 }
