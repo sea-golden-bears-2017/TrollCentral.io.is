@@ -7,7 +7,7 @@ post '/users' do
   user.password = params[:user][:password_hash]
   if user.save
     @message = "Welcome to the Family, Troll!"
-    
+    session[:user_id] = user.id
     redirect '/questions'
   else
     status 422
