@@ -1,14 +1,62 @@
-.answered_question {
-
-  margin: 0 auto;
-
-
-}
-.container {
-  margin: auto 0;
+html {
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
 }
 
-/*textarea {
-  width: 660px;
-  height:200px;
-}*/
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: cornflowerblue;
+}
+
+header {
+  background-color: purple;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  margin: 1rem;
+  font-size: 3rem;
+  font-family: 'Eater', cursive;
+}
+
+.login {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.authorization {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1em;
+}
+
+.errors {
+  color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
