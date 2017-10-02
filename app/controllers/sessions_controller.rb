@@ -1,4 +1,4 @@
-put '/sessions' do
+post '/sessions' do
   user = User.authenticate(params[:email], params[:password])
   p user
   if user != nil
