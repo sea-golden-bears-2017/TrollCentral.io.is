@@ -1,7 +1,7 @@
 <h1>Question Show Page</h1>
 <div> <!-- Question DIV -->
   <div> <!-- Question Text -->
-    <h2><%=  @question.question_text %></h2>
+    <h2>QUESTION: <%=  @question.question_text %></h2>
   </div>
   <div class="question-vote">
     <%# FIXME: Fix hard-coded user id when we add sessions! %>
@@ -23,13 +23,25 @@
       <input type="submit" value="Submit">
     </form>
   </div>
+
 <div id="answer_list">
   <% if @question.answers %>
-  <ul>
+  <div>
     <% @question.answers.each do |answer| %>
-    <li>
-      <%= answer.answer_text %>
-    </li>
+    <h2>
+      ANSWER: <%= answer.answer_text %>
+    </h2>
+    <ul>
+      <% answer.comments.each do |comment| %>
+      <li><%= comment.comment_text %></li>
+      <% end %>
+    </ul>
+    <div>
+      <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments" method="post">
+        <label>Add Comment:</label>
+        <input type="text" name="comment_text">
+        <input type="submit" value="Submit">
+      </form>
     <div class="answer_vote">
       <%# FIXME: Fix hard-coded user id when we add sessions! %>
       <%= erb :'partials/_vote',
@@ -39,13 +51,14 @@
       </p>
     </div>
     <% end %>
-  </ul>
+  </div>
   <% end %>
 </div>
-<div id="new_question">
+
+<div id="new_question"> <!-- NEW ANSWER -->
   <form action="/questions/<%= @question.id %>/answers" method="post">
-    <label for="question_text">Answer Text: </label>
-    <textarea name="answer[answer_text]"></textarea>
+    <label for="question_text">Add Your Answer: </label>
+    <input name="answer[answer_text]"></input>
     <input type="hidden" name="answer[question_id]" value="<%= @question.id %>"/>
     <input type="hidden" name="answer[user_id]" value="0"/>
     <input type="submit" value="Submit" />
