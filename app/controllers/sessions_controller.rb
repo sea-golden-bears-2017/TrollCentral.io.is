@@ -15,6 +15,6 @@ delete '/sessions' do
     session.destroy
     redirect '/questions'
   else
-    redirect '/questions'
+    status 404
   end
 end

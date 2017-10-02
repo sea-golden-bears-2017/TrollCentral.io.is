@@ -17,4 +17,19 @@ describe 'Session Controller' do
       end
     end
   end
+
+  describe "delete /sessions" do
+    context "when user does not exist" do
+      it "returns 404" do
+        delete "/sessions"
+        expect(last_response.status).to eq(404)
+      end
+    end
+    context "when user_id does exist" do
+      it "returns 302" do
+        delete "/sessions", {}, "rack.session" => {user_id: user.id}
+        expect(last_response.status).to eq(302)
+      end
+    end
+  end
 end
