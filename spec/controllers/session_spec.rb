@@ -1,20 +1,20 @@
 require 'spec_helper'
 
 describe 'Session Controller' do
-  let!(:user) {User.create(username: "TestName", email: "test@test.com", password_hash: "password")}
+  let!(:user) {User.create!(user_name: "TestName", email: "test@test.com", password: "password")}
 
-  describe "get /sessions/:user_id" do
-   context "when correct user is logged in" do
-     it "returns 303" do
-       post "/sessions", {}, "rack.session" => {user_id: user.id}
-       expect(last_response.status).to eq(303)
-     end
-   end
-   context "when incorrect user is logged in" do
-     it "returns 404" do
-       get "/sessions/#{user.id}/channels", {}, "rack.session" => {user_id: other_user.id}
-       expect(last_response.status).to eq(404)
-     end
-   end
+  describe "put /sessions" do
+    context "when credentials are correct" do
+      it "returns 302" do
+        put "/sessions", {email: user.email, password: "password"}
+        expect(last_response.status).to eq(302)
+      end
+    end
+    context "when credentials are incorrect" do
+      it "returns 422" do
+        put "/sessions", {email: "Wenis", password: "Hambone"}
+        expect(last_response.status).to eq(422)
+      end
+    end
   end
 end
