@@ -6,5 +6,12 @@ class Vote < ActiveRecord::Base
   validates :voteable, presence: true
   validates :user, presence: true
 
-  validates :voteable_id, uniqueness: {scope: :user}
+  validate :user_can_only_vote_once
+
+  def user_can_only_vote_once
+    vote = Vote.find_by(voteable: self.voteable)
+    if vote && vote.user == self.user
+      errors.add(:user, "can only vote for the same thing once.")
+    end
+  end
 end
