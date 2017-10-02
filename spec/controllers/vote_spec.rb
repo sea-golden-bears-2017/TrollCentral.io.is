@@ -5,7 +5,7 @@ describe "Vote Controller" do
   let (:question) {Question.create(question_text: "Where?", user_id: user.id)}
   describe "post ../votes" do
     context "upvote on a question" do
-      let(:upvote) {post "/questions/#{question.id}/votes", {vote_val: 1, type: "question", user_id: user.id}}
+      let(:upvote) {post "/questions/#{question.id}/votes", {vote_val: 1, type: "question"}, "rack.session" => {user_id: user.id}}
       it "returns 302" do
         upvote
         expect(last_response.status).to eq(302)
@@ -27,7 +27,7 @@ describe "Vote Controller" do
       end
     end
     context "downvote on a question" do
-      let(:downvote) {post "/questions/#{question.id}/votes", {vote_val: -1, type: "question", user_id: user.id}}
+      let(:downvote) {post "/questions/#{question.id}/votes", {vote_val: -1, type: "question"}, "rack.session" => {user_id: user.id}}
       it "returns 302" do
         downvote
         expect(last_response.status).to eq(302)
@@ -45,7 +45,10 @@ describe "Vote Controller" do
       end
     end
     context "user is not logged in" do
-      xit "returns 404"
+      it "returns 404" do
+        post "/questions/#{question.id}/votes", {vote_val: -1, type: "question"}
+        expect(last_response.status).to eq(404)
+      end
     end
   end
 end
