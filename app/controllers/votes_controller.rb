@@ -12,13 +12,14 @@ post "/questions/:voteable_id/votes" do
     voteable = Question.find_by_id(params[:voteable_id])
     question_id = voteable.id
   when "answer"
-    # FIXME: Change user_id when we add sessions!!!!
     voteable = Answer.find_by_id(params[:voteable_id])
     question_id = voteable.question.id
   else
     status 404
     return "Error - 404"
   end
-  Vote.create!(value: params[:vote_val], user: user, voteable: voteable)
+  if !voteable.votes.pluck(:user_id).include?(user.id)
+    Vote.create(value: params[:vote_val], user: user, voteable: voteable)
+  end
   redirect "/questions/#{question_id}"
 end
