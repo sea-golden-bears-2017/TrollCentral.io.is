@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe "Questions Controller" do
+  let(:user) {User.create!(user_name: "TestName", email: "test@test.com", password: "password")}
   Question.destroy_all
   describe "get /questions" do
     it "returns 200" do
@@ -23,11 +24,15 @@ describe "Questions Controller" do
 
   describe "post /questions" do
     it "it reroutes to landing page" do
-      post '/questions', {question_text: "Nothing"}
+      post '/questions', {question_text: "Nothing"}, "rack.session" => {user_id: user.id}
       expect(last_response.location).to end_with("/questions")
     end
     it "it creates a new question on form submit" do
-      expect{post '/questions', {question_text: "Nothing"}}.to change{Question.count}.by(1)
+      expect{post '/questions', {question_text: "Nothing"}, "rack.session" => {user_id: user.id}}.to change{Question.count}.by(1)
+    end
+    it "returns 404 when user is not logged in" do
+      post '/questions', {question_text: "Nothing"}
+      expect(last_response.status).to eq(404)
     end
   end
 
