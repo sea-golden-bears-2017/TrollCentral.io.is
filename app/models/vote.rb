@@ -9,8 +9,12 @@ class Vote < ActiveRecord::Base
   validate :user_can_only_vote_once
 
   def user_can_only_vote_once
-    vote = Vote.find_by(voteable: self.voteable)
-    if vote && vote.user == self.user
+    # vote = Vote.find_by(voteable: self.voteable)
+    # if vote && vote.user == self.user
+    #   errors.add(:user, "can only vote for the same thing once.")
+    # end
+    if self.voteable.votes.pluck(:user_id).include?(self.user.id)
+
       errors.add(:user, "can only vote for the same thing once.")
     end
   end

@@ -1,9 +1,8 @@
 <div class="show-page"> <!-- Question DIV -->
   <div class="title">
     <div class="question-vote">
-      <%# FIXME: Fix hard-coded user id when we add sessions! %>
       <%= erb :'partials/_vote',
-      locals: {item: @question, user_id: 1, type: "question", voteable_id: @question.id} %>
+      locals: {item: @question, type: "question", voteable_id: @question.id} %>
     </div>
     <div> <!-- Question Text -->
       <h1><%=  @question.question_text %></h1>
@@ -28,9 +27,8 @@
       <% @question.answers.each do |answer| %>
       <div class="answer-title">
         <div class="question-vote-grey">
-          <%# FIXME: Fix hard-coded user id when we add sessions! %>
           <%= erb :'partials/_vote',
-          locals: {item: answer, user_id: 1, type: "answer", voteable_id: answer.id} %>
+          locals: {item: answer, type: "answer", voteable_id: answer.id} %>
         </div>
         <h2><%= answer.answer_text %></h2>
       </div>
