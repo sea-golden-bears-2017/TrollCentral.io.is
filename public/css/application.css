@@ -29,6 +29,10 @@ header h1 a {
   color: white;
 }
 
+h2 {
+  font-weight: 500;
+}
+
 .vote {
   color: #4CAF50;
   border: none;
@@ -95,6 +99,16 @@ a {
   padding: 1rem;
   margin-left: 1rem;
   color: white;
+  border: none;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.9rem;
+}
+
+.comment-button:hover {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  margin-left: 1rem;
   border: none;
   padding: 0.25rem 0.7rem;
   font-size: 0.9rem;
