@@ -4,8 +4,12 @@ get '/questions' do
 end
 
 post '/questions' do
-  Question.create(question_text: params[:question_text], user_id: 0)
-  redirect '/questions'
+  if session[:user_id]
+    Question.create(question_text: params[:question_text], user_id: session[:user_id])
+    redirect '/questions'
+  end
+  status 404
+  return "Error - 404"
 end
 
 get '/questions/:id' do
