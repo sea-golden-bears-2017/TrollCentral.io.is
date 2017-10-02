@@ -1,12 +1,12 @@
 html {
   font-size: 16px;
-  font-family: 'Raleway', sans-serif;
+  font-family: helvetica;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  background-color: cornflowerblue;
+  background-color: white;
 }
 
 header {
@@ -23,6 +23,19 @@ header h1 {
   margin: 1rem;
   font-size: 3rem;
   font-family: 'Eater', cursive;
+}
+
+header h1 a {
+  color: white;
+}
+
+.vote {
+  color: #4CAF50;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .login {
@@ -47,16 +60,96 @@ header h1 {
 
 a {
   text-decoration: none;
-  color: white;
+  color: grey;
 }
 
 .button {
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 0.5rem 1rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.topic {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  margin: 1rem;
+}
+
+.signup a {
+  color: white;
+}
+
+.signup {
+  background-color: #4CAF50;
+  padding: 1rem;
+  margin-left: 1rem;
+}
+
+.show-page {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+}
+
+.question-vote {
+  margin-right: 1rem;
+}
+
+.vote-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.comment {
+  border-bottom: 0.5px solid #E9E9E9;
+  border-top: 0.5px solid #E9E9E9;
+  padding: 0.3rem;
+  margin: 0;
+}
+
+.answer-comment {
+  border-bottom: 0.5px solid white;
+  border-top: 0.5px solid white;
+  padding: 0.3rem;
+  margin: 0;
+}
+
+.comments {
+  margin-left: 4rem;
+  margin-bottom: 1rem;
+}
+
+#answer_list {
+  background-color: #E9E9E9;
+  padding: 1rem;
+}
+
+#new_question {
+  margin-top: 1rem;
+}
+
+.answer-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.question-vote-grey {
+  margin-right: 1rem;
+}
+
+.comment-form {
+  margin-left: 4rem;
+  margin-bottom: 1rem;
 }

@@ -1,8 +1,6 @@
-<a href="/users/new">Become a Troll</a>
-
 <div>
   <% @questions.each do |question| %>
-  <div>
+  <div class="topic">
     <a href="/questions/<%=question.id%>"><h2><%= question.question_text %></h2></a>
     <div>
       <label>Answers: <%= question.answers.count %></label>
