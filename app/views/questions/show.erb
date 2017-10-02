@@ -17,11 +17,13 @@
         <li><%= comment.comment_text %></li>
       <% end %>
     </ul>
-    <form action="/questions/<%= @question.id %>/comments" method="post">
-      <label>Add Comment:</label>
-      <input type="text" name="comment_text">
-      <input type="submit" value="Submit">
-    </form>
+    <% if session[:user_id] %>
+      <form action="/questions/<%= @question.id %>/comments" method="post">
+        <label>Add Comment:</label>
+        <input type="text" name="comment_text">
+        <input type="submit" value="Submit">
+      </form>
+    <% end %>
   </div>
 
 <div id="answer_list">
@@ -37,11 +39,13 @@
       <% end %>
     </ul>
     <div>
-      <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments" method="post">
-        <label>Add Comment:</label>
-        <input type="text" name="comment_text">
-        <input type="submit" value="Submit">
-      </form>
+      <% if session[:user_id] %>
+        <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments" method="post">
+          <label>Add Comment:</label>
+          <input type="text" name="comment_text">
+          <input type="submit" value="Submit">
+        </form>
+      <% end %>
     <div class="answer_vote">
       <%# FIXME: Fix hard-coded user id when we add sessions! %>
       <%= erb :'partials/_vote',
@@ -55,12 +59,14 @@
   <% end %>
 </div>
 
-<div id="new_question"> <!-- NEW ANSWER -->
-  <form action="/questions/<%= @question.id %>/answers" method="post">
-    <label for="question_text">Add Your Answer: </label>
-    <input name="answer[answer_text]"></input>
-    <input type="hidden" name="answer[question_id]" value="<%= @question.id %>"/>
-    <input type="hidden" name="answer[user_id]" value="0"/>
-    <input type="submit" value="Submit" />
-  </form>
-</div>
+<% if session[:user_id] %>
+  <div id="new_question"> <!-- NEW ANSWER -->
+    <form action="/questions/<%= @question.id %>/answers" method="post">
+      <label for="question_text">Add Your Answer: </label>
+      <input name="answer[answer_text]"></input>
+      <input type="hidden" name="answer[question_id]" value="<%= @question.id %>"/>
+      <input type="hidden" name="answer[user_id]" value="0"/>
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+<% end %>
