@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Question do
-  let! (:user) {User.create!(user_name: "name")}
+  let! (:user) {User.create!(user_name: "name", email: "hi@hi.com", password_hash: 'password')}
   let! (:question) {Question.create!(question_text: "question", user_id: user.id)}
   let! (:comment) {Comment.create!(comment_text: "comment", user_id: user.id,
                   commentable_type: "Question", commentable_id: question.id)}

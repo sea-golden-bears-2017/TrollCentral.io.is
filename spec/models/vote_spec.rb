@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Vote do
-  let (:user) {User.create(user_name: "Woody Guthrie")}
+  let (:user) {User.create(user_name: "Woody Guthrie", email: "hi@hi.com", password_hash: 'password')}
   let (:question) {Question.create(question_text: "Where?", user_id: user.id)}
   let (:vote) {Vote.create(user: user, value: 1, voteable: question)}
   describe "validations" do
