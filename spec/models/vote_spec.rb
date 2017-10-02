@@ -15,6 +15,11 @@ describe Vote do
       vote.save
       expect(vote).to_not be_valid
     end
+    it "must not exist for the same voteable user-pair" do
+      vote
+      bad_vote = Vote.create(user: user, value: 1, voteable: question)
+      expect(bad_vote).to_not be_valid
+    end
   end
   describe "associations" do
     it "belongs to a user" do
