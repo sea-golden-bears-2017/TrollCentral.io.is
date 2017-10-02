@@ -1,8 +1,6 @@
-<a href="/users/new">Become a Troll</a>
-
 <div>
   <% @questions.each do |question| %>
-  <div>
+  <div class="topic">
     <a href="/questions/<%=question.id%>"><h2><%= question.question_text %></h2></a>
     <div>
       <label>Answers: <%= question.answers.count %></label>
@@ -12,9 +10,9 @@
 </div>
 
 <% if session[:user_id] %>
-  <form action="/questions" method="post">
-    <label for="question_text">Question: </label>
-    <input type="text" name="question_text">
-    <input type="submit" value="Submit">
-  </form>
+<form action="/questions" method="post">
+  <label for="question_text">Question: </label>
+  <input type="text" name="question_text">
+  <input class="comment-button" type="submit" value="Submit">
+</form>
 <% end %>
