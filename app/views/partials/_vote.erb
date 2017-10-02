@@ -1,3 +1,5 @@
+
+<% if session[:user_id] %>
 <div class="vote-container">
   <form action="/questions/<%= voteable_id %>/votes" method="post">
     <input type="hidden" name="user_id" value="<%= user_id %>">
@@ -15,3 +17,4 @@
     <input class="vote" type="submit" value="▼">
   </form>
 </div>
+<% end %>

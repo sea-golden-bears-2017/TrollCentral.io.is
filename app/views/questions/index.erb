@@ -9,8 +9,10 @@
   <% end %>
 </div>
 
+<% if session[:user_id] %>
 <form action="/questions" method="post">
   <label for="question_text">Question: </label>
   <input type="text" name="question_text">
   <input class="comment-button" type="submit" value="Submit">
 </form>
+<% end %>

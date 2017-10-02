@@ -10,6 +10,10 @@ post '/questions/:question_id/answers' do
 end
 
 post '/questions/:question_id/answers/:answer_id/comments' do
+  if !session[:user_id]
+    status 404
+    return "Error - 404"
+  end
   answer = Answer.find(params[:answer_id])
   Comment.create!(commentable_id: params[:answer_id], commentable_type: 'Answer', comment_text: params[:comment_text], user_id: answer.user_id)
   redirect "/questions/#{params[:question_id]}"
