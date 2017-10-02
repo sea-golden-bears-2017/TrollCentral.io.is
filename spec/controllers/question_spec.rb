@@ -37,15 +37,21 @@ describe "Questions Controller" do
   end
 
   describe "post /questions/:question_id/comments" do
-    let(:question){Question.create!(question_text: "where?", user_id: 0)}
+    let!(:user) {User.create!(user_name: "TestName", email: "test@test.com", password: "password")}
+    let(:question){Question.create!(question_text: "where?", user_id: user.id)}
 
     it "reroutes to the question's show page" do
-      post "/questions/#{question.id}/comments", {commentable_id: 1, commentable_type: 'Question', comment_text: "Nothing.", user_id: 0}
+      post "/questions/#{question.id}/comments", {commentable_id: 1, commentable_type: 'Question', comment_text: "Nothing."}, "rack.session" => {user_id: user.id}
       expect(last_response.location).to end_with("/questions/#{question.id}")
     end
 
     it "creates a new comment on form submit" do
-      expect{post "/questions/#{question.id}/comments", {commentable_id: 4, commentable_type: 'Question', comment_text: "Nothing.", user_id: 0}}.to change{Comment.count}.by(1)
+      expect{post "/questions/#{question.id}/comments", {commentable_id: 4, commentable_type: 'Question', comment_text: "Nothing."}, "rack.session" => {user_id: user.id}}.to change{Comment.count}.by(1)
+    end
+
+    it "returns 404 when user is not logged in" do
+      post "/questions/#{question.id}/comments", {commentable_id: 1, commentable_type: 'Question', comment_text: "Nothing."}
+      expect(last_response.status).to eq(404)
     end
   end
 end
