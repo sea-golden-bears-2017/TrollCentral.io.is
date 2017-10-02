@@ -67,7 +67,7 @@ a {
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -167,4 +167,17 @@ a {
 .question-comment {
   margin-left: 4rem;
   margin-bottom: 1rem;
+}
+
+/* =============================== SIGN UP PAGE =============================*/
+
+.new_account {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-title {
+  font-size: 2.5rem;
 }
