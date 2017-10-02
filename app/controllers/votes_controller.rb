@@ -17,6 +17,6 @@ post "/questions/:voteable_id/votes" do
     status 404
     return "Error - 404"
   end
-  Vote.create!(value: params[:vote_val], user: user, voteable: voteable)
+  Vote.create(value: params[:vote_val], user: user, voteable: voteable)
   redirect "/questions/#{params[:voteable_id]}"
 end
