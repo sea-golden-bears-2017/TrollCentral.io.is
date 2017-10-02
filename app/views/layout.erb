@@ -10,6 +10,8 @@
   <!--
     application.css is where you put your styles
   -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Eater" rel="stylesheet">
   <link rel="stylesheet" href="/css/application.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -18,36 +20,42 @@
   <title></title>
 </head>
 <body>
-  <div>
-
-    <% if @errors %>
-      <!-- <div class="error_messages container"> -->
-        <h4>ERROR</h4>
-        <% @errors.each do |error| %>
-          <h5><%= error %></h5>
-        <% end %>
-      <!-- </div> -->
-    <% end %>
-    <% if @message %>
-      <div class="messages container">
-        <h4> <%= @message %> </h4>
+  <header>
+    <div class="signup">
+      <a href="/users/new">Join the Trolls</a>
+    </div>
+    <div>
+      <h1><a href="/questions">TrollCentral.io</a></h1>
+    </div>
+    <div>
+      <div class="authorization">
+        <% if !session[:user_id] %>
+        <form action="/sessions" method="post">
+          <input type="email" name="email" placeholder="email">
+          <input type="password" name="password" placeholder="password">
+          <input class="button" type="submit" value="Login">
+        </form>
+      <% else %>
+        <form action="/sessions" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input class="button delete" type="submit" value="Logout">
+        </form>
+      <% end %>
       </div>
-    <% end %>
-    <% if !session[:user_id] %>
-      <p>Login:</p>
-      <form action="/sessions" method="post">
-        <input type="email" name="email" placeholder="email">
-        <input type="password" name="password" placeholder="password">
-        <input type="submit" value="submit">
-      </form>
-    <% else %>
-      <form action="/sessions" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input class="delete" type="submit" value="Logout">
-      </form>
-    <% end %>
-    <h1>TrollCentral.io</h1>
-  </div>
+      <div class="errors">
+        <% if @errors %>
+            <% @errors.each do |error| %>
+              <h4><%= error %></h4>
+            <% end %>
+        <% end %>
+        <% if @message %>
+          <div class="messages container">
+            <h4> <%= @message %> </h4>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </header>
   <%= yield %>
 </body>
 </html>

@@ -1,15 +1,20 @@
+
 <% if session[:user_id] %>
+<div class="vote-container">
   <form action="/questions/<%= voteable_id %>/votes" method="post">
     <input type="hidden" name="user_id" value="<%= user_id %>">
     <input type="hidden" name="vote_val" value="1">
     <input type="hidden" name="type" value="<%= type %>">
-    <input type="submit" value="Up-Vote">
+    <input class="vote" type="submit" value="▲">
   </form>
+
+  <%= item.votes.pluck(:value).reduce(:+).to_i %>
 
   <form action="/questions/<%= voteable_id %>/votes" method="post">
     <input type="hidden" name="user_id" value="<%= user_id %>">
     <input type="hidden" name="vote_val" value="-1">
     <input type="hidden" name="type" value="<%= type %>">
-    <input type="submit" value="Down-Vote">
+    <input class="vote" type="submit" value="▼">
   </form>
+</div>
 <% end %>
