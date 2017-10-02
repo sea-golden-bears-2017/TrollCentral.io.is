@@ -1,66 +1,57 @@
-<h1>Question Show Page</h1>
-<div> <!-- Question DIV -->
-  <div> <!-- Question Text -->
-    <h2>QUESTION: <%=  @question.question_text %></h2>
-  </div>
-  <div class="question-vote">
-    <%# FIXME: Fix hard-coded user id when we add sessions! %>
-    <%= erb :'partials/_vote',
-    locals: {user_id: 1, type: "question", voteable_id: @question.id} %>
-    <p>
-      Vote total: <%= @question.votes.pluck(:value).reduce(:+).to_i %>
-    </p>
+<div class="show-page"> <!-- Question DIV -->
+  <div class="title">
+    <div class="question-vote">
+      <%# FIXME: Fix hard-coded user id when we add sessions! %>
+      <%= erb :'partials/_vote',
+      locals: {item: @question, user_id: 1, type: "question", voteable_id: @question.id} %>
+    </div>
+    <div> <!-- Question Text -->
+      <h1><%=  @question.question_text %></h1>
+    </div>
   </div>
   <div> <!-- Comment Section -->
-    <ul>
+    <div class="comments">
       <% @question.comments.each do |comment| %>
-        <li><%= comment.comment_text %></li>
+        <p class="comment"><%= comment.comment_text %></p>
       <% end %>
-    </ul>
-    <form action="/questions/<%= @question.id %>/comments" method="post">
-      <label>Add Comment:</label>
-      <input type="text" name="comment_text">
-      <input type="submit" value="Submit">
+    </div>
+    <form class="comment-form" action="/questions/<%= @question.id %>/comments" method="post">
+      <input type="text" name="comment_text" placeholder="Add comment">
+      <input class="comment-button" type="submit" value="Submit">
     </form>
   </div>
 
-<div id="answer_list">
-  <% if @question.answers %>
-  <div>
-    <% @question.answers.each do |answer| %>
-    <h2>
-      ANSWER: <%= answer.answer_text %>
-    </h2>
-    <ul>
-      <% answer.comments.each do |comment| %>
-      <li><%= comment.comment_text %></li>
-      <% end %>
-    </ul>
+  <div id="answer_list">
+    <% if @question.answers %>
     <div>
-      <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments" method="post">
-        <label>Add Comment:</label>
-        <input type="text" name="comment_text">
-        <input type="submit" value="Submit">
+      <% @question.answers.each do |answer| %>
+      <div class="answer-title">
+        <div class="question-vote-grey">
+          <%# FIXME: Fix hard-coded user id when we add sessions! %>
+          <%= erb :'partials/_vote',
+          locals: {item: answer, user_id: 1, type: "answer", voteable_id: answer.id} %>
+        </div>
+        <h2><%= answer.answer_text %></h2>
+      </div>
+      <div class="comments">
+        <% answer.comments.each do |comment| %>
+          <p class="answer-comment"><%= comment.comment_text %></p>
+        <% end %>
+      </div>
+      <form class="comment-form" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments" method="post">
+        <input type="text" name="comment_text" placeholder="Add comment">
+        <input class="comment-button" type="submit" value="Submit">
       </form>
-    <div class="answer_vote">
-      <%# FIXME: Fix hard-coded user id when we add sessions! %>
-      <%= erb :'partials/_vote',
-      locals: {user_id: 1, type: "answer", voteable_id: answer.id} %>
-      <p>
-        Vote total: <%= answer.votes.pluck(:value).reduce(:+).to_i %>
-      </p>
-    </div>
+      <% end %>
     <% end %>
+    </div>
   </div>
-  <% end %>
-</div>
-
-<div id="new_question"> <!-- NEW ANSWER -->
-  <form action="/questions/<%= @question.id %>/answers" method="post">
-    <label for="question_text">Add Your Answer: </label>
-    <input name="answer[answer_text]"></input>
-    <input type="hidden" name="answer[question_id]" value="<%= @question.id %>"/>
-    <input type="hidden" name="answer[user_id]" value="0"/>
-    <input type="submit" value="Submit" />
-  </form>
+  <div id="new_question"> <!-- NEW ANSWER -->
+    <form action="/questions/<%= @question.id %>/answers" method="post">
+      <input name="answer[answer_text]" placeholder="Add a new answer"></input>
+      <input type="hidden" name="answer[question_id]" value="<%= @question.id %>"/>
+      <input type="hidden" name="answer[user_id]" value="0"/>
+      <input class="comment-button" type="submit" value="Submit" />
+    </form>
+  </div>
 </div>
